@@ -2,14 +2,14 @@
   <h2>Rapor Siswa</h2>
   <div class="clearfix"></div>
 </div>
-  <form class="form-horizontal form-label-left" method="get" action="<?= base_url(); ?>dashboard/list_rapor_siswa">
+  <form class="form-horizontal form-label-left" method="post" action="<?= base_url(); ?>dashboard/list_rapor_siswa" target="_blank">
     <div class="form-group">
       <label class="control-label col-md-3 col-sm-3 col-xs-12">Tahun Ajaran</label>
       <div class="col-md-2 col-sm-9 col-xs-12">
         <select name="thn_ajar" class="form-control col-md-3">
-          <option value="2015/2016">2015/2016</option>
-          <option value="2016/2017">2016/2017</option>
-          <option value="2017/2018">2017/2018</option>
+          <option value="20152016">2015/2016</option>
+          <option value="20162017">2016/2017</option>
+          <option value="20172018">2017/2018</option>
         </select>
       </div>
     </div>
