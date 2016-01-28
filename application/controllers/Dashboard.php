@@ -888,20 +888,21 @@ class Dashboard extends CI_Controller {
       );
 
       $res = $this->m_sdpa->insert_data('guru', $data_insert);
-      if ($res == 1) {
+      if ($res == "yes")  {
         $notif = '<div class="alert alert-info alert-dismissible fade in" role="alert">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
-        </button><p align="center">Tambah data SUKSES!</p></div>';
-      } elseif($res==1062) {
+        </button><p align="center">Tambah data SUKSES! </p></div>';
+      } elseif ($res == "no") {
         $notif = '<div class="alert alert-danger alert-dismissible fade in" role="alert">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
-        </button>Tambah data GAGAL! Employee_id sudah ada!</div>';
+        </button><p align="center">Tambah data GAGAL! Employee_id sudah ada! </p></div>';
       } else {
         $notif = '<div class="alert alert-danger alert-dismissible fade in" role="alert">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
         </button>Tambah data GAGAL! '.$res.'</div>';
         // $notif = "<h2 class='jumbotron'> Tambah kelas GAGAL! </h2>";
       }
+      // $this->session->set_flashdata('pesan', print_r($res));
       $this->session->set_flashdata('pesan', $notif);
       redirect("dashboard/master_guru");
     }
@@ -1501,12 +1502,17 @@ public function do_insert_siswa() {
 
   $res = $this->m_sdpa->insert_data('siswa', $data_insert);
 
-  if ($res >= 1) {
+  if ($res=="yes") {
         $notif = '<div class="alert alert-info alert-dismissible fade in" role="alert">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
         </button><p align="center">Tambah data SUKSES!</p></div>';
         // $notif = "<h2 class='jumbotron'> Tambah kelas SUKSES! </h2>";
-      } else {
+      } elseif($res=="no") {
+        $notif = '<div class="alert alert-danger alert-dismissible fade in" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
+        </button>Tambah data GAGAL! NIS sudah terdaftar.</div>';
+        // $notif = "<h2 class='jumbotron'> Tambah kelas GAGAL! </h2>";
+      } else {        
         $notif = '<div class="alert alert-danger alert-dismissible fade in" role="alert">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
         </button>Tambah data GAGAL!</div>';

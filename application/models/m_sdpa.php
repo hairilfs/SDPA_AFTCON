@@ -31,19 +31,32 @@ class M_sdpa extends CI_Model {
 	}
 
 	public function insert_data($table, $data) {
-		if ($table=="guru" || $table=="siswa") {
-			$this->db->db_debug = FALSE;	
-			$res = $this->db->insert($table, $data) or die($this->db->error());
-			if (!$res) {
-				$this->db->db_debug = TRUE;
-				// unset($res);
-				// $res = $this->db->error();
+		if ($table=="guru") {
+			$status = 0;
+			// $this->db->select('employee_id');
+			$res = $this->db->query("SELECT * FROM $table WHERE employee_id='$data[employee_id]'");
+			// $res = $this->db->get_where($table, array('employee_id' => $data['employee_id']));
+			if ($res->num_rows() == 0) {
+				$res = $this->db->insert($table, $data);
+				return "yes";
+			} else {
+				return "no";
+			}
+		} elseif ($table=="siswa") {
+			$status = 0;
+			// $this->db->select('employee_id');
+			$res = $this->db->query("SELECT * FROM $table WHERE NIS='$data[NIS]'");
+			// $res = $this->db->get_where($table, array('employee_id' => $data['employee_id']));
+			if ($res->num_rows() == 0) {
+				$res = $this->db->insert($table, $data);
+				return "yes";
+			} else {
+				return "no";
 			}
 		} else {			
 			$res = $this->db->insert($table, $data);
-		}
-				// $res = $this->db->error();
 			return $res;
+		}
 	}
 
 	public function update_data($table, $data, $where) {
